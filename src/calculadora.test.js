@@ -7,5 +7,8 @@ describe("Calculadora de cadena", () => {
   it("deberia retorna una suma si los numeros estan separados por comas", () => {
     expect(calcular("1,2,3,4")).toEqual(10)
   })
+  it("deberia retornar una suma si los numeros estan separados por comas", () => {
+    expect(calcular("1-2-3-4")).toEqual(10)
+  })
 
 });
