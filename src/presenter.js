@@ -9,5 +9,5 @@ form.addEventListener("submit", (event) => {
 
   const cadenaValue = cadena.value
   
-  div.innerHTML = "<p>" + calcular(cadena) + "</p>";
+  div.innerHTML = "<p>" + calcular(cadenaValue) + "</p>";
 });
