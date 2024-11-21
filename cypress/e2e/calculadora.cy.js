@@ -1,5 +1,5 @@
-describe("Sumador", () => {
-  it("Shows the amount of the addition to the user", () => {
+describe("Calculadora", () => {
+  it("Sumar los numeros en una cadena", () => {
     cy.visit("/");
     cy.get("#cadena").type(0);
     cy.get("#calcular-button").click();
