@@ -10,5 +10,9 @@ describe("Calculadora de cadena", () => {
   it("deberia retornar una suma si los numeros estan separados por comas", () => {
     expect(calcular("1-2-3-4")).toEqual(10)
   })
+  it("debería sumar los números cuando se especifica un delimitador junto con los predeterminados", () => {
+    expect(calcular("//[;]6,3-2;1")).toEqual(12);
+  });
+  
 
 });
