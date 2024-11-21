@@ -6,14 +6,17 @@ function calcular(cadena) {
     const finDelimitador = cadena.indexOf("]");
     const delimitadorPersonalizado = cadena.slice(3, finDelimitador);
     delimitadores = new RegExp(`[${delimitadorPersonalizado},-]`); // Combina delimitador personalizado con los predeterminados
-    cadena = cadena.slice(finDelimitador + 1); // Eliminar "//[...]" del inicio
+    cadena = cadena.slice(finDelimitador + 1);
   }
 
   const numeros = cadena.split(delimitadores).map(Number);
-  return numeros.reduce((acum, num) => acum + num, 0);
+  return numeros
+    .filter((num) => num <= 1000) // Ignorar números mayores a 1000
+    .reduce((acum, num) => acum + num, 0);
 }
 
 module.exports = calcular;
+
 
 
 

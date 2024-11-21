@@ -13,6 +13,9 @@ describe("Calculadora de cadena", () => {
   it("debería sumar los números cuando se especifica un delimitador junto con los predeterminados", () => {
     expect(calcular("//[;]6,3-2;1")).toEqual(12);
   });
+  it("debería ignorar los números mayores a 1000", () => {
+    expect(calcular("2,1001")).toEqual(2);
+  });
   
 
 });
