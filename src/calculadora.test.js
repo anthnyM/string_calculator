@@ -16,9 +16,12 @@ describe("Calculadora de cadena", () => {
   it("debería ignorar los números mayores a 1000", () => {
     expect(calcular("2,1001")).toEqual(2);
   });
-it("debería soportar delimitadores de cualquier longitud", () => {
-  expect(calcular("//[***]1***2***3")).toEqual(6);
-});
+  it("debería soportar delimitadores de cualquier longitud", () => {
+    expect(calcular("//[***]1***2***3")).toEqual(6);
+  });
+  it("debería soportar múltiples delimitadores", () => {
+    expect(calcular("//[*][%]1*2%3,7-9")).toEqual(22);
+  });
   
 
 });

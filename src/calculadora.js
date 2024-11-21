@@ -1,18 +1,30 @@
 function calcular(cadena) {
-  if (!cadena) return 0;
+  // Extraer delimitadores personalizados y los números
+  const delimitadorRegex = /^\/\/(\[.*?\])+\s*/;
+  let delimitadores = [',', '-']; // Delimitadores por defecto
+  let numerosParte = cadena;
 
-  let delimitadores = /,|-/; // Delimitadores por defecto
-  if (cadena.startsWith("//[")) {
-    const finDelimitador = cadena.indexOf("]");
-    const delimitadorPersonalizado = cadena.slice(3, finDelimitador);
-    delimitadores = new RegExp(`[${delimitadorPersonalizado},-]`); // Combina delimitador personalizado con los predeterminados
-    cadena = cadena.slice(finDelimitador + 1);
+  if (delimitadorRegex.test(cadena)) {
+      // Extraer delimitadores personalizados
+      const delimitadoresPersonalizados = cadena.match(/(?<=\[).*?(?=\])/g);
+      if (delimitadoresPersonalizados) {
+          delimitadores.push(...delimitadoresPersonalizados);
+      }
+      // Extraer la parte de los números eliminando la cabecera
+      numerosParte = cadena.replace(delimitadorRegex, '');
   }
 
-  const numeros = cadena.split(delimitadores).map(Number);
-  return numeros
-    .filter((num) => num <= 1000) // Ignorar números mayores a 1000
-    .reduce((acum, num) => acum + num, 0);
+  // Crear un regex dinámico para dividir los números por los delimitadores
+  const delimitadoresRegex = new RegExp(`[${delimitadores.map(d => d.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')).join('')}]`);
+  const numeros = numerosParte
+      .split(delimitadoresRegex) // Separar por delimitadores
+      .map(Number)              // Convertir a números
+      .filter(num => !isNaN(num) && num <= 1000); // Filtrar números válidos y <= 1000
+
+  // Sumar los números
+  const suma = numeros.reduce((acc, num) => acc + num, 0);
+
+  return suma;
 }
 
 module.exports = calcular;
