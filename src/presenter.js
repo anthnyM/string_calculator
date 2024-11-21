@@ -1,4 +1,4 @@
-import calcular from "./calculadora";
+import calcularNumeroEnCadena from "./calculadora";
 
 const cadena = document.querySelector("#cadena");
 const form = document.querySelector("#calcular-form")
@@ -9,5 +9,5 @@ form.addEventListener("submit", (event) => {
 
   const cadenaValue = cadena.value
   
-  div.innerHTML = "<p>" + calcular(cadenaValue) + "</p>";
+  div.innerHTML = "<p>" + calcularNumeroEnCadena(cadenaValue) + "</p>";
 });

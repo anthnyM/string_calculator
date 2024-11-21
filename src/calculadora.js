@@ -1,4 +1,4 @@
-function calcular(cadena) {
+function calcularNumeroEnCadena(cadena) {
   // Extraer delimitadores personalizados y los números
   const delimitadorRegex = /^\/\/(\[.*?\])+\s*/;
   let delimitadores = [',', '-']; // Delimitadores por defecto
@@ -22,12 +22,12 @@ function calcular(cadena) {
       .filter(num => !isNaN(num) && num <= 1000); // Filtrar números válidos y <= 1000
 
   // Sumar los números
-  const suma = numeros.reduce((acc, num) => acc + num, 0);
+  const sumaDeNumeros = numeros.reduce((acc, num) => acc + num, 0);
 
-  return suma;
+  return sumaDeNumeros;
 }
 
-module.exports = calcular;
+export default calcularNumeroEnCadena
 
 
 
